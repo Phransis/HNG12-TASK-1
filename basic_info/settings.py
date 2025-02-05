@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # apps
     'info',
+    'numbersAPI',
 ]
 
 MIDDLEWARE = [
