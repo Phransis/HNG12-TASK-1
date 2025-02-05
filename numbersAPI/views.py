@@ -38,6 +38,7 @@ def classify_number(request, num):
 
         # Check if the number is odd or even
             properties.append("odd" if num % 2 else "even")
+        properties.append("armstrong")
         properties.append("odd" if num % 2 else "even") 
         print(properties)
 
