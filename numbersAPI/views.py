@@ -28,28 +28,58 @@ def get_fun_fact(num):
     except requests.RequestException:
         return "Error returning fact"
 
-def classify_number(request, num):
-    try:
-        digit_sum = sum(int(digit) for digit in str(num))
-        properties = []
+# def classify_number(request, num):
+#     try:
+#         digit_sum = sum(int(digit) for digit in str(num))
+#         properties = []
 
-        # Check if the number is an Armstrong number
+#         # Check if the number is an Armstrong number
+#         if is_armstrong(num):
+
+#         # Check if the number is odd or even
+#             properties.append("odd" if num % 2 else "even")
+#         properties.append("armstrong")
+#         properties.append("odd" if num % 2 else "even") 
+#         print(properties)
+
+#         # Return the result as a JSON response
+#         return JsonResponse({
+#             "number": num,
+#             "is_prime": is_prime(num),
+#             "is_perfect": is_perfect(num),
+#             "properties": properties,  # This will be ["armstrong", "odd"] or ["armstrong", "even"]
+#             "digit_sum": digit_sum,
+#             "fun_fact": get_fun_fact(num)
+#         })
+#     except ValueError:
+#         return JsonResponse({"number": "alphabet", "error": True})
+def classify_number(request):
+    try:
+        num = request.GET.get("number")  # Fetch from query params
+        if not num or not num.isdigit():
+            return JsonResponse({"number": "alphabet", "error": True} , status=400)
+        
+        digit_sum = sum(int(digit) for digit in str(num))
+
+
+#         # Check if the number is an Armstrong number
+        properties = []
+        num = int(num)
         if is_armstrong(num):
 
-        # Check if the number is odd or even
+#         # Check if the number is odd or even
             properties.append("odd" if num % 2 else "even")
         properties.append("armstrong")
         properties.append("odd" if num % 2 else "even") 
         print(properties)
 
-        # Return the result as a JSON response
         return JsonResponse({
             "number": num,
             "is_prime": is_prime(num),
             "is_perfect": is_perfect(num),
-            "properties": properties,  # This will be ["armstrong", "odd"] or ["armstrong", "even"]
+            "properties": properties,
             "digit_sum": digit_sum,
             "fun_fact": get_fun_fact(num)
         })
     except ValueError:
-        return JsonResponse({"number": "alphabet", "error": True})
+        return JsonResponse({"number": "alphabet", "error": True} )

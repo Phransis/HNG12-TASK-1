@@ -29,6 +29,11 @@ python manage.py runserver
 }
 
 
+{
+    "number": "alphabet",
+    "error": true
+}
+
 ## Deployment Link
 //hng12-task-1-dubt.onrender.com/classify-number
 
