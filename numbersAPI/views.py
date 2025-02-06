@@ -57,7 +57,7 @@ def classify_number(request):
     try:
         num = request.GET.get("number")  # Fetch from query params
         if not num or not num.isdigit():
-            return JsonResponse({"number": "alphabet", "error": True} , status=400)
+            return JsonResponse({"number": num, "error": True} , status=400)
         
         digit_sum = sum(int(digit) for digit in str(num))
 
@@ -68,8 +68,8 @@ def classify_number(request):
         if is_armstrong(num):
 
 #         # Check if the number is odd or even
-            properties.append("odd" if num % 2 else "even")
-        properties.append("armstrong")
+            # properties.append("odd" if num % 2 else "even")
+            properties.append("armstrong")
         properties.append("odd" if num % 2 else "even") 
         print(properties)
 
